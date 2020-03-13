@@ -56,16 +56,16 @@ spec:
       serviceAccountName: litmus
       containers:
         - name: chaos-operator
-          # built off the master branch
-          image: litmuschaos/chaos-operator:ci
+          # 'latest' tag corresponds to the latest released image
+          image: litmuschaos/chaos-operator:latest
           command:
           - chaos-operator
           imagePullPolicy: Always
           env:
             - name: CHAOS_RUNNER_IMAGE
-              value: "litmuschaos/chaos-runner:ci"
+              value: "litmuschaos/chaos-runner:latest"
             - name: CHAOS_MONITOR_IMAGE
-              value: "litmuschaos/chaos-exporter:ci"
+              value: "litmuschaos/chaos-exporter:latest"
             - name: WATCH_NAMESPACE
               value: 
             - name: POD_NAME
