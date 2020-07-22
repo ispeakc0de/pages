@@ -58,13 +58,13 @@ spec:
       serviceAccountName: litmus
       containers:
         - name: chaos-operator
-          image: litmuschaos/chaos-operator:1.6.0
+          image: litmuschaos/chaos-operator:1.6.1
           command:
             - chaos-operator
           imagePullPolicy: Always
           env:
             - name: CHAOS_RUNNER_IMAGE
-              value: "litmuschaos/chaos-runner:1.6.0"
+              value: "litmuschaos/chaos-runner:1.6.1"
             - name: WATCH_NAMESPACE
               value: ""
             - name: POD_NAME
@@ -170,6 +170,9 @@ spec:
                       components:
                         type: object
                         properties:
+                          nodeSelector:
+                            type: object
+                            minLength: 1
                           experimentImage:
                             type: string
                           env:
@@ -341,6 +344,24 @@ spec:
                         allowEmptyValue: false
                         minLength: 1
                       mountPath:
+                        type: string
+                        allowEmptyValue: false
+                        minLength: 1
+                hostFileVolumes:
+                  type: array
+                  items:
+                    type: object
+                    minProperties: 3
+                    properties:
+                      name:
+                        type: string
+                        allowEmptyValue: false
+                        minLength: 1
+                      mountPath:
+                        type: string
+                        allowEmptyValue: false
+                        minLength: 1
+                      nodePath:
                         type: string
                         allowEmptyValue: false
                         minLength: 1
